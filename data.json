@@ -1,0 +1,129 @@
+{
+  "personal_information": {
+    "name": "Faris Bayu Setyawan [cite: 1]",
+    "location": "Malang, 65152 [cite: 2]",
+    "phone": "+62 822 3226 5913 [cite: 2]",
+    "email": "bayustfa@gmail.com [cite: 2]",
+    "linkedin": "https://www.linkedin.com/in/faris-bavu-setyawan-42366a205/ [cite: 2]"
+  },
+  "profile": "A passionate Fullstack Web Developer with hands-on experience in building modern, responsive, and scalable web applications using React, Next.js, TypeScript, and Laravel. Skilled in both frontend and backend development, with a strong understanding of UI/UX principles and database design. Demonstrated experience in public sector digital projects and freelance applications, with a focus on clean code, performance, and usability. [cite: 4, 5]",
+  "work_experience": [
+    {
+      "company": "Dinas Komunikasi dan Informatika Kabupaten Pasuruan",
+      "position": "Fullstack Developer",
+      "period": "Aug 2025-Now",
+      "location": "Online",
+      "responsibilities": [
+        "Redesigned and modernized the official website of Kabupaten Pasuruan, improving UI/UX and performance.",
+        "Developed a web-based job analysis application to support internal HR data management and efficiency.",
+        "Successfully migrated SIM PKK app to a self-hosted VPS environment with Nginx and MinIO S3 implies improvement in data control.",
+        "Collaborate with internal teams to gather requirements, design database structures, and implement scalable web solutions."
+      ],
+      "technologies": [
+        "PHP",
+        "Typescript",
+        "React",
+        "Laravel",
+        "Bootstrap",
+        "TailwindCSS",
+        "MySQL"
+      ]
+    },
+    {
+      "company": "PT Tetanggaku Saling Bantu",
+      "position": "Software Engineer Intern",
+      "period": "Oct 2023- 2023",
+      "location": "Kota Jakarta Selatan",
+      "responsibilities": [
+        "Developed a simple backend API for fraud detection, later integrated as a foundation for fraud prevention features in chat systems.",
+        "Built a machine learning model to identify potential fraudulent activity based on user input data.",
+        "Conducted manual QA testing for the Tetanggaku mobile application to ensure reliability and user experience quality."
+      ],
+      "technologies": ["Java", "Python"]
+    }
+  ],
+  "certifications": [
+    "Complete Intro to SQL & PostgreSQL | Frontend Masters (2025)",
+    "Fullstack Javascript Bootcamp | Devscale Indonesia (2025)",
+    "Belajar Membuat Aplikasi Android Intermediate | Dicoding (2023)"
+  ],
+  "projects": [
+    {
+      "name": "Achivio",
+      "role": "Frontend Developer",
+      "description": "Freelance project providing an alternative question bank and tryout platform to help students prepare for exams.",
+      "responsibilities": [
+        "Developed key features including user authentication, question and answer management interface, and responsive UI design.",
+        "Collaborated with a small team to ensure performance, accessibility, and intuitive user experience."
+      ],
+      "technologies": ["Typescript", "React", "Tailwind CSS", "Shaden UI"]
+    },
+    {
+      "name": "Bilik Tani",
+      "role": "Frontend Developer",
+      "description": "web app to help farmers calculate crop productivity forecasts, agricultural land drainage and information of plants and pests.",
+      "responsibilities": [
+        "Developed feature user authentication, plant and pests information page, short note page and planting schedule data."
+      ],
+      "technologies": ["Javascript", "Next JS 14", "Tailwind CSS", "Shaden UI"]
+    },
+    {
+      "name": "Besmart",
+      "role": "Frontend Developer",
+      "description": "Web and mobile application to support PT. Amerta Indah Otsuka marketing team to record their employee activity",
+      "responsibilities": [
+        "Developed frontend web application for admin dashboard, integrating with backend service for data handling."
+      ],
+      "technologies": ["Typescript", "Angular"]
+    }
+  ],
+  "achievements": [
+    "Finalist Gen Al Hackathon APAC Edition (2024): Work as Mobile Developer using Kotlin",
+    "Top 65 Capstone Project Bangkit Academy (2023): Work as Mobile Developer using Kotlin"
+  ],
+  "education": [
+    {
+      "institution": "IPB University",
+      "location": "Bogor",
+      "degree": "Computer Science Department, Faculty of Mathematics and Natural Sciences/Bachelor's Degree, S-1",
+      "gpa": "3.73/4.00",
+      "period": "Aug 2020-Aug 2024"
+    },
+    {
+      "institution": "Bangkit Academy led by Google, Tokopedia, Gojek, & Traveloka",
+      "cohort": "Mobile Development Cohort",
+      "period": "Feb 2023-Jul 2023",
+      "details": [
+        "Being one of 5.010 students who were selected from 67.387 applicants across Indonesia.",
+        "TOP 65 Capstone Project"
+      ]
+    },
+    {
+      "institution": "Devscale Indonesia",
+      "location": "Online",
+      "cohort": "Fullstack Development Cohort",
+      "period": "Jan 2025-March 2025",
+      "details": [
+        "Completed intensive fullstack development bootcamp with Next JS technology",
+        "Be able to build a fullstack website from scratch, including file storage, oauth and LLM integration."
+      ]
+    }
+  ],
+  "skills": [
+    "HTML",
+    "CSS",
+    "Javascript",
+    "Typescript",
+    "PHP",
+    "Laravel",
+    "React JS",
+    "Next JS",
+    "Angular",
+    "Prisma",
+    "MySQL",
+    "PostgreSQL",
+    "Tailwind CSS",
+    "Cloudflare R2 [cite: 6]",
+    "Vercel [cite: 6]"
+  ]
+}

@@ -1,160 +1,864 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en" class="scroll-smooth">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Faris - Personal Site</title>
-
-    <!-- Bootstrap -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Faris Bayu Setyawan - Portfolio</title>
+    <!-- Google Fonts: Inter for a clean, minimalist look -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-      crossorigin="anonymous"
-    />
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet" />
 
-    <!-- Montserrat font -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS (CDN for simple GitHub Pages deployment) -->
+    <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- CSS file -->
-    <link rel="stylesheet" href="styles.css" />
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
+    <!-- Tailwind Config for Monochrome/Zen Theme -->
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              ivory: "#FAFAF7" /* Off-white for background */,
+              light: "#FFFFFF",
+              dark: "#1A1A1A" /* Soft black */,
+              gray: {
+                100: "#F5F5F5",
+                300: "#E0E0E0",
+                500: "#9E9E9E",
+                700: "#616161",
+                900: "#212121",
+              },
+            },
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      body {
+        background-color: #fafaf7;
+        color: #1a1a1a;
+      }
+      /* Custom Zen Scrollbar */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #fafaf7;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #e0e0e0;
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #9e9e9e;
+      }
+
+      .glass-nav {
+        background: rgba(250, 250, 247, 0.85);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border-bottom: 1px solid rgba(224, 224, 224, 0.4);
+      }
+
+      .hover-underline-animation {
+        display: inline-block;
+        position: relative;
+      }
+
+      .hover-underline-animation::after {
+        content: "";
+        position: absolute;
+        width: 100%;
+        transform: scaleX(0);
+        height: 1px;
+        bottom: -2px;
+        left: 0;
+        background-color: #1a1a1a;
+        transform-origin: bottom right;
+        transition: transform 0.3s ease-out;
+      }
+
+      .hover-underline-animation:hover::after {
+        transform: scaleX(1);
+        transform-origin: bottom left;
+      }
+    </style>
   </head>
-  <body>
+  <body class="antialiased selection:bg-dark selection:text-ivory">
+    <!-- Navigation -->
+    <nav
+      class="fixed w-full z-50 glass-nav transition-all duration-300"
+      id="navbar">
+      <div
+        class="max-w-5xl mx-auto px-6 py-4 flex justify-between items-center">
+        <a
+          href="#"
+          class="text-xl font-medium tracking-tight hover:opacity-70 transition-opacity"
+          >FBS.</a
+        >
 
-    <!-- Navbar start -->
-    <nav nav class="navbar navbar-expand-lg navbar-dark bg-dark" data-bs-theme="dark">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#" style="color: white"><b>Faris.</b></a>
+        <!-- Mobile Menu Button -->
+        <button
+          id="mobile-menu-btn"
+          class="md:hidden focus:outline-none text-dark">
+          <svg
+            class="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24">
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+
+        <!-- Desktop Menu -->
+        <div class="hidden md:flex space-x-8 text-sm font-medium">
+          <a
+            href="#about"
+            class="hover-underline-animation text-gray-700 hover:text-dark"
+            >About</a
+          >
+          <a
+            href="#experience"
+            class="hover-underline-animation text-gray-700 hover:text-dark"
+            >Experience</a
+          >
+          <a
+            href="#projects"
+            class="hover-underline-animation text-gray-700 hover:text-dark"
+            >Projects</a
+          >
+          <a
+            href="#education"
+            class="hover-underline-animation text-gray-700 hover:text-dark"
+            >Education</a
+          >
+        </div>
+      </div>
+
+      <!-- Mobile Menu (Hidden by default) -->
+      <div
+        id="mobile-menu"
+        class="hidden md:hidden bg-ivory border-b border-gray-200 absolute w-full left-0 top-full">
+        <div class="flex flex-col px-6 py-4 space-y-4 text-sm font-medium">
+          <a href="#about" class="text-gray-700 hover:text-dark">About</a>
+          <a href="#experience" class="text-gray-700 hover:text-dark"
+            >Experience</a
+          >
+          <a href="#projects" class="text-gray-700 hover:text-dark">Projects</a>
+          <a href="#education" class="text-gray-700 hover:text-dark"
+            >Education</a
+          >
+        </div>
       </div>
     </nav>
-    <!-- Navbar end -->
 
-    <!-- Heroes start-->
-    <div class="container" id="heroes">
-      <div class="px-5 py-5 text-center heroes">
-        <img
-          class="d-block mx-auto mb-4 image-shape profile-image"
-          src="./images/profile.jpg"
-          alt="faris's profile picture"
-          width="196px"
-          height="196px"
-        />
-        <h1 class="display-5 fw-bold" style="color:black">
-          Hi. I am <span style="color: salmon"><i>Faris</i></span>
-        </h1>
-        <div class="col-lg-6 mx-auto">
-          <p class="lead mb-4">
-            A computer science student who interest in technology product such as mobile apps and website.
-          </p>
-        </div>
-      </div>
-    </div>
-    <!-- Heroes end -->
+    <main class="max-w-4xl mx-auto px-6 pt-32 pb-20">
+      <!-- Hero Section -->
+      <section
+        id="hero"
+        class="min-h-[80vh] flex flex-col justify-center items-start mb-20">
+        <div
+          class="flex flex-col md:flex-row-reverse items-center justify-between w-full gap-12 lg:gap-20">
+          <!-- Profile Image -->
+          <div
+            class="w-48 h-48 md:w-64 md:h-64 flex-shrink-0 relative group"
+            data-aos="fade-left"
+            data-aos-duration="1000">
+            <div
+              class="absolute inset-0 border border-gray-300 rounded-full translate-x-3 translate-y-3 transition-transform duration-500 group-hover:translate-x-4 group-hover:translate-y-4"></div>
+            <!-- Silakan ganti src gambar di bawah ini dengan path foto aslimu (contoh: './assets/profile.jpg') -->
+            <img
+              src="./photo_profile.jpeg"
+              alt="Faris Bayu Setyawan"
+              class="w-full h-full object-cover rounded-full filter grayscale hover:grayscale-0 transition-all duration-700 relative z-10" />
+            <div
+              class="absolute inset-0 bg-dark/5 rounded-full z-20 group-hover:bg-transparent transition-colors"></div>
+            <div
+              class="absolute -bottom-6 text-center w-full text-xs text-gray-400 font-light hidden md:block opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              Your Photo Here
+            </div>
+          </div>
 
-    <!-- Divider -->
-    <hr class="my-1">
-
-    <!-- Projects start -->
-    <div class="container" id="projects" style="text-align:center">
-      <h2><u>Projects</u></h2>
-      <div class="projects">
-        <div class="project" id="travelah">
-          <img src="./images/travelah.png" alt="Travelah" class="project-image">
-          <div class="project-description-container">
-            <h3 class="project-title">Travelah.</h3>
-            <p class="project-description">Travelah is a client-side Android application built with Kotlin. Travelah aims to to provide a personalized travel experience in Indonesia. This is a capstone application for Bangkit 2023 Program.</p>
+          <div class="flex-1" data-aos="fade-right" data-aos-duration="1000">
+            <p
+              class="text-gray-500 mb-4 tracking-wider uppercase text-sm font-medium">
+              Fullstack Web Developer
+            </p>
+            <h1
+              class="text-5xl md:text-7xl font-bold tracking-tighter mb-6 text-dark leading-tight">
+              Faris Bayu<br /><span class="text-gray-400">Setyawan.</span>
+            </h1>
+            <p
+              class="text-lg text-gray-700 mb-8 max-w-lg leading-relaxed font-light">
+              Building modern, responsive, and scalable web applications with a
+              focus on clean code, performance, and usability.
+            </p>
+            <div class="flex flex-wrap gap-4 text-sm font-medium">
+              <a
+                href="mailto:bayustfa@gmail.com"
+                class="px-6 py-3 border border-dark text-dark hover:bg-dark hover:text-ivory transition-colors duration-300 flex items-center gap-2 group">
+                <svg
+                  class="w-4 h-4 group-hover:-translate-y-0.5 transition-transform"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24">
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                </svg>
+                Email Me
+              </a>
+              <a
+                href="https://www.linkedin.com/in/faris-bavu-setyawan-42366a205/"
+                target="_blank"
+                class="px-6 py-3 border border-gray-300 text-gray-700 hover:border-dark hover:text-dark transition-colors duration-300 flex items-center gap-2 group">
+                <svg
+                  class="w-4 h-4 group-hover:-translate-y-0.5 transition-transform"
+                  fill="currentColor"
+                  viewBox="0 0 24 24">
+                  <path
+                    d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                </svg>
+                LinkedIn
+              </a>
+            </div>
           </div>
         </div>
-        <hr class="my-5">
-        <div class="project" id="bytes">
-          <img src="./images/bytes.png" alt="Bytes" class="project-image">
-          <div class="project-description-container">
-            <h3 class="project-title">Bytes.</h3>
-            <p class="project-description">Bytes is a revolutionary mobile application that transforms the way people learn about technology. Our mission is to make technology education easy and accessible for everyone, anywhere, anytime. The tagline 'Make Learning Like Snack Bites' indicates that users can consume small, easily digestible pieces of information at once, just like snacks.</p>
-          </div>
-        </div>
-        <hr class="my-5">
-        <div class="project" id="tanum">
-          <img src="./images/tanum.png" alt="tanum" class="project-image">
-          <div class="project-description-container">
-            <h3 class="project-title">Tanum.</h3>
-            <p class="project-description">Tanum is an application that allows farmers to record farmland, manage land activities, and access the latest news about agriculture in Indonesia.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- Projects end -->
 
-    <!-- Divider -->
-    <hr class="my-1">
-
-    <!-- Skills start -->
-    <div class="container" id="skills">
-      <h2><u>Skills</u></h2>
-      <div class="row text-center gutter-2">
-        <div class="col-lg-2 skill-item-container" id="html">
-          <svg viewBox="0 0 128 128" class="skill-image" height="128" width="128">
-            <path fill="#E44D26" d="M19.037 113.876L9.032 1.661h109.936l-10.016 112.198-45.019 12.48z"></path><path fill="#F16529" d="M64 116.8l36.378-10.086 8.559-95.878H64z"></path><path fill="#EBEBEB" d="M64 52.455H45.788L44.53 38.361H64V24.599H29.489l.33 3.692 3.382 37.927H64zm0 35.743l-.061.017-15.327-4.14-.979-10.975H33.816l1.928 21.609 28.193 7.826.063-.017z"></path><path fill="#fff" d="M63.952 52.455v13.763h16.947l-1.597 17.849-15.35 4.143v14.319l28.215-7.82.207-2.325 3.234-36.233.335-3.696h-3.708zm0-27.856v13.762h33.244l.276-3.092.628-6.978.329-3.692z"></path>
-          </svg>
-          <p class="skill-title">HTML</p>
-        </div>
-        <div class="col-lg-2 skill-item-container" id="css">
-          <svg viewBox="0 0 128 128" class="skill-image" height="128" width="128">
-            <path fill="#1572B6" d="M18.814 114.123L8.76 1.352h110.48l-10.064 112.754-45.243 12.543-45.119-12.526z"></path><path fill="#33A9DC" d="M64.001 117.062l36.559-10.136 8.601-96.354h-45.16v106.49z"></path><path fill="#fff" d="M64.001 51.429h18.302l1.264-14.163H64.001V23.435h34.682l-.332 3.711-3.4 38.114h-30.95V51.429z"></path><path fill="#EBEBEB" d="M64.083 87.349l-.061.018-15.403-4.159-.985-11.031H33.752l1.937 21.717 28.331 7.863.063-.018v-14.39z"></path><path fill="#fff" d="M81.127 64.675l-1.666 18.522-15.426 4.164v14.39l28.354-7.858.208-2.337 2.406-26.881H81.127z"></path><path fill="#EBEBEB" d="M64.048 23.435v13.831H30.64l-.277-3.108-.63-7.012-.331-3.711h34.646zm-.047 27.996v13.831H48.792l-.277-3.108-.631-7.012-.33-3.711h16.447z"></path>
-          </svg>
-          <p class="skill-title">CSS</p>
-        </div>
-        <div class="col-lg-2 skill-item-container" id="javascript">
-          <svg viewBox="0 0 128 128" class="skill-image" height="128" width="128">
-            <path fill="#F0DB4F" d="M2 1v125h125V1H2zm66.119 106.513c-1.845 3.749-5.367 6.212-9.448 7.401-6.271 1.44-12.269.619-16.731-2.059-2.986-1.832-5.318-4.652-6.901-7.901l9.52-5.83c.083.035.333.487.667 1.071 1.214 2.034 2.261 3.474 4.319 4.485 2.022.69 6.461 1.131 8.175-2.427 1.047-1.81.714-7.628.714-14.065C58.433 78.073 58.48 68 58.48 58h11.709c0 11 .06 21.418 0 32.152.025 6.58.596 12.446-2.07 17.361zm48.574-3.308c-4.07 13.922-26.762 14.374-35.83 5.176-1.916-2.165-3.117-3.296-4.26-5.795 4.819-2.772 4.819-2.772 9.508-5.485 2.547 3.915 4.902 6.068 9.139 6.949 5.748.702 11.531-1.273 10.234-7.378-1.333-4.986-11.77-6.199-18.873-11.531-7.211-4.843-8.901-16.611-2.975-23.335 1.975-2.487 5.343-4.343 8.877-5.235l3.688-.477c7.081-.143 11.507 1.727 14.756 5.355.904.916 1.642 1.904 3.022 4.045-3.772 2.404-3.76 2.381-9.163 5.879-1.154-2.486-3.069-4.046-5.093-4.724-3.142-.952-7.104.083-7.926 3.403-.285 1.023-.226 1.975.227 3.665 1.273 2.903 5.545 4.165 9.377 5.926 11.031 4.474 14.756 9.271 15.672 14.981.882 4.916-.213 8.105-.38 8.581z"></path>
-          </svg>
-          <p class="skill-title">Javascript</p>
-        </div>
-        <div class="col-lg-2 skill-item-container" id="java">
-          <svg viewBox="0 0 128 128" class="skill-image" height="128" width="128">
-            <path fill="#0074BD" d="M47.617 98.12s-4.767 2.774 3.397 3.71c9.892 1.13 14.947.968 25.845-1.092 0 0 2.871 1.795 6.873 3.351-24.439 10.47-55.308-.607-36.115-5.969zm-2.988-13.665s-5.348 3.959 2.823 4.805c10.567 1.091 18.91 1.18 33.354-1.6 0 0 1.993 2.025 5.132 3.131-29.542 8.64-62.446.68-41.309-6.336z"></path><path fill="#EA2D2E" d="M69.802 61.271c6.025 6.935-1.58 13.17-1.58 13.17s15.289-7.891 8.269-17.777c-6.559-9.215-11.587-13.792 15.635-29.58 0 .001-42.731 10.67-22.324 34.187z"></path><path fill="#0074BD" d="M102.123 108.229s3.529 2.91-3.888 5.159c-14.102 4.272-58.706 5.56-71.094.171-4.451-1.938 3.899-4.625 6.526-5.192 2.739-.593 4.303-.485 4.303-.485-4.953-3.487-32.013 6.85-13.743 9.815 49.821 8.076 90.817-3.637 77.896-9.468zM49.912 70.294s-22.686 5.389-8.033 7.348c6.188.828 18.518.638 30.011-.326 9.39-.789 18.813-2.474 18.813-2.474s-3.308 1.419-5.704 3.053c-23.042 6.061-67.544 3.238-54.731-2.958 10.832-5.239 19.644-4.643 19.644-4.643zm40.697 22.747c23.421-12.167 12.591-23.86 5.032-22.285-1.848.385-2.677.72-2.677.72s.688-1.079 2-1.543c14.953-5.255 26.451 15.503-4.823 23.725 0-.002.359-.327.468-.617z"></path><path fill="#EA2D2E" d="M76.491 1.587S89.459 14.563 64.188 34.51c-20.266 16.006-4.621 25.13-.007 35.559-11.831-10.673-20.509-20.07-14.688-28.815C58.041 28.42 81.722 22.195 76.491 1.587z"></path><path fill="#0074BD" d="M52.214 126.021c22.476 1.437 57-.8 57.817-11.436 0 0-1.571 4.032-18.577 7.231-19.186 3.612-42.854 3.191-56.887.874 0 .001 2.875 2.381 17.647 3.331z"></path>
-          </svg>
-          <p class="skill-title">Java</p>
-        </div>
-        <div class="col-lg-2 skill-item-container" id="kotlin">
-          <svg viewBox="0 0 128 128" class="skill-image" height="128" width="128">
-            <linearGradient id="kotlin-original-a" gradientUnits="userSpaceOnUse" x1="-11.899" y1="48.694" x2="40.299" y2="-8.322"><stop offset="0" stop-color="#1c93c1"></stop><stop offset=".163" stop-color="#2391c0"></stop><stop offset=".404" stop-color="#378bbe"></stop><stop offset=".696" stop-color="#587eb9"></stop><stop offset=".995" stop-color="#7f6cb1"></stop></linearGradient><path fill="url(#kotlin-original-a)" d="M0 0h65.4L0 64.4z"></path><linearGradient id="kotlin-original-b" gradientUnits="userSpaceOnUse" x1="43.553" y1="149.174" x2="95.988" y2="94.876"><stop offset="0" stop-color="#1c93c1"></stop><stop offset=".216" stop-color="#2d8ebf"></stop><stop offset=".64" stop-color="#587eb9"></stop><stop offset=".995" stop-color="#7f6cb1"></stop></linearGradient><path fill="url(#kotlin-original-b)" d="M128 128L64.6 62.6 0 128z"></path><linearGradient id="kotlin-original-c" gradientUnits="userSpaceOnUse" x1="3.24" y1="95.249" x2="92.481" y2="2.116"><stop offset="0" stop-color="#c757a7"></stop><stop offset=".046" stop-color="#ca5a9e"></stop><stop offset=".241" stop-color="#d66779"></stop><stop offset=".428" stop-color="#e17357"></stop><stop offset=".6" stop-color="#e97c3a"></stop><stop offset=".756" stop-color="#ef8324"></stop><stop offset=".888" stop-color="#f28817"></stop><stop offset=".982" stop-color="#f48912"></stop></linearGradient><path fill="url(#kotlin-original-c)" d="M0 128L128 0H64.6L0 63.7z"></path>
-          </svg>
-          <p class="skill-title">Kotlin</p>
-        </div>
-        <div class="col-lg-2 skill-item-container" id="nodejs">
-          <svg viewBox="0 0 128 128" class="skill-image" height="128" width="128">
-            <path fill="#83CD29" d="M112.771 30.334L68.674 4.729c-2.781-1.584-6.402-1.584-9.205 0L14.901 30.334C12.031 31.985 10 35.088 10 38.407v51.142c0 3.319 2.084 6.423 4.954 8.083l11.775 6.688c5.628 2.772 7.617 2.772 10.178 2.772 8.333 0 13.093-5.039 13.093-13.828v-50.49c0-.713-.371-1.774-1.071-1.774h-5.623C42.594 41 41 42.061 41 42.773v50.49c0 3.896-3.524 7.773-10.11 4.48L18.723 90.73c-.424-.23-.723-.693-.723-1.181V38.407c0-.482.555-.966.982-1.213l44.424-25.561c.415-.235 1.025-.235 1.439 0l43.882 25.555c.42.253.272.722.272 1.219v51.142c0 .488.183.963-.232 1.198l-44.086 25.576c-.378.227-.847.227-1.261 0l-11.307-6.749c-.341-.198-.746-.269-1.073-.086-3.146 1.783-3.726 2.02-6.677 3.043-.726.253-1.797.692.41 1.929l14.798 8.754a9.294 9.294 0 004.647 1.246c1.642 0 3.25-.426 4.667-1.246l43.885-25.582c2.87-1.672 4.23-4.764 4.23-8.083V38.407c0-3.319-1.36-6.414-4.229-8.073zM77.91 81.445c-11.726 0-14.309-3.235-15.17-9.066-.1-.628-.633-1.379-1.272-1.379h-5.731c-.709 0-1.279.86-1.279 1.566 0 7.466 4.059 16.512 23.453 16.512 14.039 0 22.088-5.455 22.088-15.109 0-9.572-6.467-12.084-20.082-13.886-13.762-1.819-15.16-2.738-15.16-5.962 0-2.658 1.184-6.203 11.374-6.203 9.105 0 12.461 1.954 13.842 8.091.118.577.645.991 1.24.991h5.754c.354 0 .692-.143.94-.396.24-.272.367-.613.335-.979-.891-10.568-7.912-15.493-22.112-15.493-12.631 0-20.166 5.334-20.166 14.275 0 9.698 7.497 12.378 19.622 13.577 14.505 1.422 15.633 3.542 15.633 6.395 0 4.955-3.978 7.066-13.309 7.066z"></path>
+        <div
+          class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce flex flex-col items-center gap-2">
+          <span class="text-xs text-gray-400 tracking-widest uppercase"
+            >Scroll</span
+          >
+          <a
+            href="#about"
+            class="text-gray-400 hover:text-dark transition-colors">
+            <svg
+              class="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.5"
+                d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
             </svg>
-          <p class="skill-title">Node.Js</p>
+          </a>
         </div>
-      </div>
-    </div>    
-    <!-- Skills end -->
+      </section>
 
-    <!-- Contact me start -->
-    <footer>
-      <div class="container footer">
-        <p>Contact me.</p>
-        <ul class="contact-list">
-          <li class="contact-item" id="github">
-            <a href="https://github.com/farissbayu"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" width="40px" height="40px" alt="github"/></a>
-          </li>
-          <li class="contact-item" id="linkedin">
-            <a href="https://www.linkedin.com/in/faris-bayu-setyawan-42366a205/">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-plain.svg" width="40px" height="40px" alt="linkedin"/></a>
-            </a>
-          </li>
-        </ul>
-      </div>
-    </footer>
-    <!-- Contact me end -->
+      <div class="w-full h-px bg-gray-200 my-16"></div>
 
-    <!-- Script -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+      <!-- About Section -->
+      <section id="about" class="mb-24" data-aos="fade-up">
+        <h2
+          class="text-xs font-semibold tracking-widest text-gray-500 uppercase mb-8 flex items-center gap-4">
+          <span class="w-8 h-px bg-gray-300"></span>
+          01. Profile
+        </h2>
+        <p class="text-xl md:text-2xl text-gray-900 leading-relaxed font-light">
+          A passionate Fullstack Web Developer with hands-on experience in
+          building modern, responsive, and scalable web applications using
+          React, Next.js, TypeScript, and Laravel. Skilled in both frontend and
+          backend development, with a strong understanding of UI/UX principles
+          and database design. Demonstrated experience in public sector digital
+          projects and freelance applications, with a focus on clean code,
+          performance, and usability.
+        </p>
+
+        <div class="mt-12" data-aos="fade-up" data-aos-delay="100">
+          <h3
+            class="text-xs font-medium text-gray-500 uppercase tracking-widest mb-6">
+            Technologies & Core Skills
+          </h3>
+          <div class="flex flex-wrap gap-2 md:gap-3">
+            <span
+              class="px-4 py-2 bg-white border border-gray-200 text-sm hover:border-dark hover:text-dark text-gray-600 transition-colors cursor-default rounded-sm"
+              >HTML / CSS</span
+            >
+            <span
+              class="px-4 py-2 bg-white border border-gray-200 text-sm hover:border-dark hover:text-dark text-gray-600 transition-colors cursor-default rounded-sm"
+              >Javascript</span
+            >
+            <span
+              class="px-4 py-2 bg-white border border-gray-200 text-sm hover:border-dark hover:text-dark text-gray-600 transition-colors cursor-default rounded-sm"
+              >Typescript</span
+            >
+            <span
+              class="px-4 py-2 bg-white border border-gray-200 text-sm hover:border-dark hover:text-dark text-gray-600 transition-colors cursor-default rounded-sm"
+              >PHP</span
+            >
+            <span
+              class="px-4 py-2 bg-white border border-gray-200 text-sm hover:border-dark hover:text-dark text-gray-600 transition-colors cursor-default rounded-sm"
+              >Laravel</span
+            >
+            <span
+              class="px-4 py-2 bg-white border border-gray-200 text-sm hover:border-dark hover:text-dark text-gray-600 transition-colors cursor-default rounded-sm"
+              >React JS</span
+            >
+            <span
+              class="px-4 py-2 bg-white border border-gray-200 text-sm hover:border-dark hover:text-dark text-gray-600 transition-colors cursor-default rounded-sm"
+              >Next JS</span
+            >
+            <span
+              class="px-4 py-2 bg-white border border-gray-200 text-sm hover:border-dark hover:text-dark text-gray-600 transition-colors cursor-default rounded-sm"
+              >Angular</span
+            >
+            <span
+              class="px-4 py-2 bg-white border border-gray-200 text-sm hover:border-dark hover:text-dark text-gray-600 transition-colors cursor-default rounded-sm"
+              >Prisma</span
+            >
+            <span
+              class="px-4 py-2 bg-white border border-gray-200 text-sm hover:border-dark hover:text-dark text-gray-600 transition-colors cursor-default rounded-sm"
+              >MySQL</span
+            >
+            <span
+              class="px-4 py-2 bg-white border border-gray-200 text-sm hover:border-dark hover:text-dark text-gray-600 transition-colors cursor-default rounded-sm"
+              >PostgreSQL</span
+            >
+            <span
+              class="px-4 py-2 bg-white border border-gray-200 text-sm hover:border-dark hover:text-dark text-gray-600 transition-colors cursor-default rounded-sm"
+              >Tailwind CSS</span
+            >
+            <span
+              class="px-4 py-2 bg-white border border-gray-200 text-sm hover:border-dark hover:text-dark text-gray-600 transition-colors cursor-default rounded-sm"
+              >Cloudflare R2</span
+            >
+            <span
+              class="px-4 py-2 bg-white border border-gray-200 text-sm hover:border-dark hover:text-dark text-gray-600 transition-colors cursor-default rounded-sm"
+              >Vercel</span
+            >
+          </div>
+        </div>
+      </section>
+
+      <!-- Experience Section -->
+      <section id="experience" class="mb-24">
+        <h2
+          class="text-xs font-semibold tracking-widest text-gray-500 uppercase mb-12 flex items-center gap-4"
+          data-aos="fade-right">
+          <span class="w-8 h-px bg-gray-300"></span>
+          02. Work Experience
+        </h2>
+
+        <div class="space-y-16">
+          <!-- Job 1 -->
+          <div
+            class="relative pl-6 md:pl-0 border-l border-gray-200 md:border-l-0 md:border-t md:pt-8 md:border-gray-200 group transition-all duration-300 hover:border-dark max-w-3xl"
+            data-aos="fade-up">
+            <div
+              class="md:hidden absolute w-2.5 h-2.5 bg-ivory border-[1.5px] border-gray-400 rounded-full left-[-5.5px] top-1.5 group-hover:border-dark group-hover:bg-dark transition-colors"></div>
+            <div
+              class="hidden md:block absolute w-full h-px bg-gray-200 top-0 left-0 transition-colors duration-300 group-hover:bg-dark"></div>
+
+            <div
+              class="flex flex-col md:flex-row md:justify-between md:items-baseline mb-4 gap-1">
+              <div>
+                <h3 class="text-xl font-medium text-dark">
+                  Fullstack Developer
+                </h3>
+                <p class="text-gray-600 font-light mt-1">
+                  Dinas Komunikasi dan Informatika Kabupaten Pasuruan
+                </p>
+                <p class="text-xs text-gray-400 mt-1 uppercase tracking-wider">
+                  Online
+                </p>
+              </div>
+              <div class="text-gray-500 text-sm font-mono mt-2 md:mt-0">
+                Aug 2025 — Now
+              </div>
+            </div>
+
+            <ul class="list-none text-gray-700 font-light mb-6 space-y-3">
+              <li
+                class="relative pl-5 before:content-[''] before:absolute before:left-0 before:top-2.5 before:w-1.5 before:h-px before:bg-gray-400">
+                Redesigned and modernized the official website of Kabupaten
+                Pasuruan, improving UI/UX and performance.
+              </li>
+              <li
+                class="relative pl-5 before:content-[''] before:absolute before:left-0 before:top-2.5 before:w-1.5 before:h-px before:bg-gray-400">
+                Developed a web-based job analysis application to support
+                internal HR data management and efficiency.
+              </li>
+              <li
+                class="relative pl-5 before:content-[''] before:absolute before:left-0 before:top-2.5 before:w-1.5 before:h-px before:bg-gray-400">
+                Successfully migrated SIM PKK app to a self-hosted VPS
+                environment with Nginx and MinIO S3 implies improvement in data
+                control.
+              </li>
+              <li
+                class="relative pl-5 before:content-[''] before:absolute before:left-0 before:top-2.5 before:w-1.5 before:h-px before:bg-gray-400">
+                Collaborate with internal teams to gather requirements, design
+                database structures, and implement scalable web solutions.
+              </li>
+            </ul>
+
+            <div class="flex flex-wrap gap-2 text-xs font-mono text-gray-500">
+              <span
+                class="px-2 py-1 bg-gray-100/50 border border-gray-200 rounded"
+                >PHP</span
+              >
+              <span
+                class="px-2 py-1 bg-gray-100/50 border border-gray-200 rounded"
+                >Typescript</span
+              >
+              <span
+                class="px-2 py-1 bg-gray-100/50 border border-gray-200 rounded"
+                >React</span
+              >
+              <span
+                class="px-2 py-1 bg-gray-100/50 border border-gray-200 rounded"
+                >Laravel</span
+              >
+              <span
+                class="px-2 py-1 bg-gray-100/50 border border-gray-200 rounded"
+                >Bootstrap</span
+              >
+              <span
+                class="px-2 py-1 bg-gray-100/50 border border-gray-200 rounded"
+                >TailwindCSS</span
+              >
+              <span
+                class="px-2 py-1 bg-gray-100/50 border border-gray-200 rounded"
+                >MySQL</span
+              >
+            </div>
+          </div>
+
+          <!-- Job 2 -->
+          <div
+            class="relative pl-6 md:pl-0 border-l border-gray-200 md:border-l-0 md:border-t md:pt-8 md:border-gray-200 group transition-all duration-300 hover:border-dark max-w-3xl"
+            data-aos="fade-up">
+            <div
+              class="md:hidden absolute w-2.5 h-2.5 bg-ivory border-[1.5px] border-gray-400 rounded-full left-[-5.5px] top-1.5 group-hover:border-dark group-hover:bg-dark transition-colors"></div>
+            <div
+              class="hidden md:block absolute w-full h-px bg-gray-200 top-0 left-0 transition-colors duration-300 group-hover:bg-dark"></div>
+
+            <div
+              class="flex flex-col md:flex-row md:justify-between md:items-baseline mb-4 gap-1">
+              <div>
+                <h3 class="text-xl font-medium text-dark">
+                  Software Engineer Intern
+                </h3>
+                <p class="text-gray-600 font-light mt-1">
+                  PT Tetanggaku Saling Bantu
+                </p>
+                <p class="text-xs text-gray-400 mt-1 uppercase tracking-wider">
+                  Kota Jakarta Selatan
+                </p>
+              </div>
+              <div class="text-gray-500 text-sm font-mono mt-2 md:mt-0">
+                Oct 2023 — 2023
+              </div>
+            </div>
+
+            <ul class="list-none text-gray-700 font-light mb-6 space-y-3">
+              <li
+                class="relative pl-5 before:content-[''] before:absolute before:left-0 before:top-2.5 before:w-1.5 before:h-px before:bg-gray-400">
+                Developed a simple backend API for fraud detection, later
+                integrated as a foundation for fraud prevention features in chat
+                systems.
+              </li>
+              <li
+                class="relative pl-5 before:content-[''] before:absolute before:left-0 before:top-2.5 before:w-1.5 before:h-px before:bg-gray-400">
+                Built a machine learning model to identify potential fraudulent
+                activity based on user input data.
+              </li>
+              <li
+                class="relative pl-5 before:content-[''] before:absolute before:left-0 before:top-2.5 before:w-1.5 before:h-px before:bg-gray-400">
+                Conducted manual QA testing for the Tetanggaku mobile
+                application to ensure reliability and user experience quality.
+              </li>
+            </ul>
+
+            <div class="flex flex-wrap gap-2 text-xs font-mono text-gray-500">
+              <span
+                class="px-2 py-1 bg-gray-100/50 border border-gray-200 rounded"
+                >Java</span
+              >
+              <span
+                class="px-2 py-1 bg-gray-100/50 border border-gray-200 rounded"
+                >Python</span
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Projects Section -->
+      <section id="projects" class="mb-24">
+        <h2
+          class="text-xs font-semibold tracking-widest text-gray-500 uppercase mb-12 flex items-center gap-4"
+          data-aos="fade-right">
+          <span class="w-8 h-px bg-gray-300"></span>
+          03. Selected Projects
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- Project 1 -->
+          <div
+            class="group bg-white p-8 border border-gray-200 hover:border-dark transition-all duration-300 flex flex-col h-full rounded-sm relative overflow-hidden"
+            data-aos="fade-up"
+            data-aos-delay="0">
+            <div
+              class="absolute top-0 right-0 w-16 h-16 bg-gradient-to-bl from-gray-100 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+            <div class="flex justify-between items-start mb-6">
+              <svg
+                class="w-7 h-7 text-gray-400 group-hover:text-dark transition-colors"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.5"
+                  d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+              </svg>
+              <span
+                class="text-xs font-mono text-gray-400 uppercase tracking-widest"
+                >Frontend</span
+              >
+            </div>
+            <h3
+              class="text-2xl font-medium text-dark mb-4 group-hover:text-black">
+              Achivio
+            </h3>
+            <p
+              class="text-gray-600 font-light mb-8 flex-grow leading-relaxed text-sm lg:text-base">
+              Freelance project providing an alternative question bank and
+              tryout platform to help students prepare for exams. Developed key
+              features including user authentication, question and answer
+              management interface, and responsive UI design.
+            </p>
+            <div
+              class="flex flex-wrap gap-x-3 gap-y-2 mt-auto text-xs font-mono text-gray-500">
+              <span>Typescript</span>
+              <span>React</span>
+              <span>Tailwind CSS</span>
+              <span>Shaden UI</span>
+            </div>
+          </div>
+
+          <!-- Project 2 -->
+          <div
+            class="group bg-white p-8 border border-gray-200 hover:border-dark transition-all duration-300 flex flex-col h-full rounded-sm relative overflow-hidden"
+            data-aos="fade-up"
+            data-aos-delay="100">
+            <div
+              class="absolute top-0 right-0 w-16 h-16 bg-gradient-to-bl from-gray-100 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+            <div class="flex justify-between items-start mb-6">
+              <svg
+                class="w-7 h-7 text-gray-400 group-hover:text-dark transition-colors"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.5"
+                  d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+              </svg>
+              <span
+                class="text-xs font-mono text-gray-400 uppercase tracking-widest"
+                >Frontend</span
+              >
+            </div>
+            <h3
+              class="text-2xl font-medium text-dark mb-4 group-hover:text-black">
+              Bilik Tani
+            </h3>
+            <p
+              class="text-gray-600 font-light mb-8 flex-grow leading-relaxed text-sm lg:text-base">
+              Web app to help farmers calculate crop productivity forecasts,
+              agricultural land drainage and information of plants and pests.
+            </p>
+            <div
+              class="flex flex-wrap gap-x-3 gap-y-2 mt-auto text-xs font-mono text-gray-500">
+              <span>Javascript</span>
+              <span>Next JS 14</span>
+              <span>Tailwind CSS</span>
+              <span>Shaden UI</span>
+            </div>
+          </div>
+
+          <!-- Project 3 -->
+          <div
+            class="group bg-white p-8 border border-gray-200 hover:border-dark transition-all duration-300 flex flex-col h-full rounded-sm md:col-span-2 lg:col-span-1 relative overflow-hidden"
+            data-aos="fade-up"
+            data-aos-delay="200">
+            <div
+              class="absolute top-0 right-0 w-16 h-16 bg-gradient-to-bl from-gray-100 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+            <div class="flex justify-between items-start mb-6">
+              <svg
+                class="w-7 h-7 text-gray-400 group-hover:text-dark transition-colors"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.5"
+                  d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+              </svg>
+              <span
+                class="text-xs font-mono text-gray-400 uppercase tracking-widest"
+                >Frontend</span
+              >
+            </div>
+            <h3
+              class="text-2xl font-medium text-dark mb-4 group-hover:text-black">
+              Besmart
+            </h3>
+            <p
+              class="text-gray-600 font-light mb-8 flex-grow leading-relaxed text-sm lg:text-base">
+              Web and mobile application to support PT. Amerta Indah Otsuka
+              marketing team to record their employee activity. Developing
+              frontend admin dashboard.
+            </p>
+            <div
+              class="flex flex-wrap gap-x-3 gap-y-2 mt-auto text-xs font-mono text-gray-500">
+              <span>Typescript</span>
+              <span>Angular</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Education & Achievements -->
+      <section
+        id="education"
+        class="mb-20 grid grid-cols-1 lg:grid-cols-2 gap-16">
+        <div data-aos="fade-right">
+          <h2
+            class="text-xs font-semibold tracking-widest text-gray-500 uppercase mb-8 flex items-center gap-4">
+            <span class="w-8 h-px bg-gray-300"></span>
+            04. Education
+          </h2>
+          <div class="space-y-10">
+            <div class="group">
+              <div
+                class="flex justify-between items-baseline mb-2 border-b border-gray-200 pb-2 group-hover:border-dark transition-colors">
+                <h3 class="text-lg font-medium text-dark">IPB University</h3>
+                <span class="text-xs text-gray-500 font-mono"
+                  >Aug '20 - Aug '24</span
+                >
+              </div>
+              <p class="text-sm text-gray-700 font-light mb-1">
+                Computer Science Department, Bachelor's Degree
+              </p>
+              <p class="text-xs text-gray-500 tracking-wide uppercase">
+                GPA: 3.73/4.00 · Bogor
+              </p>
+            </div>
+
+            <div class="group">
+              <div
+                class="flex justify-between items-baseline mb-2 border-b border-gray-200 pb-2 group-hover:border-dark transition-colors">
+                <h3 class="text-lg font-medium text-dark">
+                  Devscale Indonesia
+                </h3>
+                <span class="text-xs text-gray-500 font-mono"
+                  >Jan '25 - Mar '25</span
+                >
+              </div>
+              <p class="text-sm text-gray-700 font-light mb-3">
+                Fullstack Development Cohort
+              </p>
+              <ul class="text-sm text-gray-600 space-y-2 font-light list-none">
+                <li
+                  class="relative pl-4 before:content-[''] before:absolute before:left-0 before:top-2 before:w-1 before:h-px before:bg-gray-400">
+                  Completed intensive fullstack development bootcamp with Next
+                  JS.
+                </li>
+                <li
+                  class="relative pl-4 before:content-[''] before:absolute before:left-0 before:top-2 before:w-1 before:h-px before:bg-gray-400">
+                  Built fullstack websites with file storage, auth and LLM.
+                </li>
+              </ul>
+            </div>
+
+            <div class="group">
+              <div
+                class="flex justify-between items-baseline mb-2 border-b border-gray-200 pb-2 group-hover:border-dark transition-colors">
+                <h3 class="text-lg font-medium text-dark">Bangkit Academy</h3>
+                <span class="text-xs text-gray-500 font-mono"
+                  >Feb '23 - Jul '23</span
+                >
+              </div>
+              <p class="text-sm text-gray-700 font-light mb-3">
+                Mobile Development Cohort
+              </p>
+              <ul class="text-sm text-gray-600 space-y-2 font-light list-none">
+                <li
+                  class="relative pl-4 before:content-[''] before:absolute before:left-0 before:top-2 before:w-1 before:h-px before:bg-gray-400">
+                  Selected from 67,387 applicants across Indonesia.
+                </li>
+                <li
+                  class="relative pl-4 before:content-[''] before:absolute before:left-0 before:top-2 before:w-1 before:h-px before:bg-gray-400">
+                  TOP 65 Capstone Project.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div data-aos="fade-left">
+          <h2
+            class="text-xs font-semibold tracking-widest text-gray-500 uppercase mb-8 flex items-center gap-4">
+            <span class="w-8 h-px bg-gray-300"></span>
+            05. Certs & Achievements
+          </h2>
+
+          <div class="mb-10">
+            <h3
+              class="text-sm font-medium text-dark mb-5 tracking-wide uppercase">
+              Achievements
+            </h3>
+            <ul class="space-y-5">
+              <li class="flex items-start group">
+                <span
+                  class="w-1.5 h-1.5 rounded-full bg-gray-300 mr-4 mt-2 group-hover:bg-dark transition-colors flex-shrink-0"></span>
+                <span class="text-gray-700 font-light text-sm leading-relaxed"
+                  >Finalist Gen AI Hackathon APAC Edition (2024): Mobile
+                  Developer using Kotlin</span
+                >
+              </li>
+              <li class="flex items-start group">
+                <span
+                  class="w-1.5 h-1.5 rounded-full bg-gray-300 mr-4 mt-2 group-hover:bg-dark transition-colors flex-shrink-0"></span>
+                <span class="text-gray-700 font-light text-sm leading-relaxed"
+                  >Top 65 Capstone Project Bangkit Academy (2023): Mobile
+                  Developer using Kotlin</span
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h3
+              class="text-sm font-medium text-dark mb-5 tracking-wide uppercase">
+              Certifications
+            </h3>
+            <ul class="space-y-4">
+              <li
+                class="p-4 border border-gray-200 bg-white hover:border-dark transition-colors text-sm font-light text-gray-700">
+                Complete Intro to SQL & PostgreSQL
+                <span class="text-gray-400 ml-1"
+                  >| Frontend Masters (2025)</span
+                >
+              </li>
+              <li
+                class="p-4 border border-gray-200 bg-white hover:border-dark transition-colors text-sm font-light text-gray-700">
+                Fullstack Javascript Bootcamp
+                <span class="text-gray-400 ml-1"
+                  >| Devscale Indonesia (2025)</span
+                >
+              </li>
+              <li
+                class="p-4 border border-gray-200 bg-white hover:border-dark transition-colors text-sm font-light text-gray-700">
+                Belajar Membuat Aplikasi Android Intermediate
+                <span class="text-gray-400 ml-1">| Dicoding (2023)</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer
+        class="text-center pt-16 mt-16 border-t border-gray-200"
+        data-aos="fade-up">
+        <div class="flex justify-center gap-8 mb-8">
+          <a
+            href="mailto:bayustfa@gmail.com"
+            class="text-gray-400 hover:text-dark transition-colors">
+            <span class="sr-only">Email</span>
+            <svg
+              class="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.5"
+                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+            </svg>
+          </a>
+          <a
+            href="https://www.linkedin.com/in/faris-bavu-setyawan-42366a205/"
+            target="_blank"
+            class="text-gray-400 hover:text-dark transition-colors">
+            <span class="sr-only">LinkedIn</span>
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+              <path
+                d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+            </svg>
+          </a>
+        </div>
+        <p
+          class="text-gray-400 text-xs font-mono uppercase tracking-widest mb-2">
+          Designed & Built by Faris Bayu
+        </p>
+        <p class="text-gray-400 text-xs font-light">
+          © 2026 All rights reserved. Built with plain HTML & Tailwind CSS.
+        </p>
+      </footer>
+    </main>
+
+    <!-- Scripts -->
+    <!-- AOS Animate on Scroll -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      // Initialize AOS with clean configuration
+      AOS.init({
+        once: true, // Whether animation should happen only once - while scrolling down
+        offset: 40, // Offset (in px) from the original trigger point
+        duration: 800, // Values from 0 to 3000, with step 50ms
+        easing: "ease-out-cubic", // Default easing for AOS animations
+      });
+
+      // Mobile Menu Toggle logic
+      const btn = document.getElementById("mobile-menu-btn");
+      const menu = document.getElementById("mobile-menu");
+
+      btn.addEventListener("click", () => {
+        menu.classList.toggle("hidden");
+      });
+
+      // Close mobile menu on clicking any link (for smooth scrolling experience)
+      document.querySelectorAll("#mobile-menu a").forEach((link) => {
+        link.addEventListener("click", () => {
+          menu.classList.add("hidden");
+        });
+      });
+
+      // Subtle Navbar shadow effect on scroll
+      window.addEventListener("scroll", () => {
+        const nav = document.getElementById("navbar");
+        if (window.scrollY > 20) {
+          nav.classList.add("shadow-sm");
+          nav.classList.replace("py-4", "py-3");
+        } else {
+          nav.classList.remove("shadow-sm");
+          nav.classList.replace("py-3", "py-4");
+        }
+      });
+    </script>
   </body>
 </html>
